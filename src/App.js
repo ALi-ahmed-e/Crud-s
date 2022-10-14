@@ -1,23 +1,46 @@
-import logo from './logo.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Header from './components/Header/Header';
+import Home from './components/Home/Home';
+import Sign from './components/Sign/Sign';
 
 function App() {
+  const user = useSelector(state => state.Auth.User)
+
+
+
+  const AuthCheck = ({ children }) => {
+
+    return user != '' ? (children) : <Navigate to='/sign' />
+  }
+  const NonAuthCheck = ({ children }) => {
+    return user != '' ? <Navigate to='/' /> : (children)
+  }
+
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App dark">
+
+
+      {user!= ''&&<Header />}
+      <div className='  pt-14 '>
+        <BrowserRouter>
+          <Routes>
+
+            <Route path='/' element={<AuthCheck><Home /></AuthCheck>} />
+            <Route path='/sign' element={<NonAuthCheck><Sign /></NonAuthCheck>} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+
+
+
+
+
     </div>
   );
 }

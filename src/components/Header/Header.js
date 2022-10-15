@@ -9,7 +9,7 @@ import { auth } from '../../firebase'
 const Header = () => {
   const user = useSelector(state => state.Auth.User)
   const classNames = (...classes) => classes.filter(Boolean).join(' ')
-  const [windowsize, setwindowsize] = useState();
+  const [windowsize, setwindowsize] = useState(window.innerWidth);
 
 
 

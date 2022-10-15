@@ -31,7 +31,7 @@ useEffect(() => {
  
 
   return (
-    <div className='text-xs sm:text-[17px] w-full h-14 bg-[#ffffff80] dark:bg-slate-900 dark:text-white shadow-lg shadow-black/10 backdrop-blur-sm fixed flex justify-between items-center' style={{ 'direction': 'rtl' }}>
+    <div className='text-sm sm:text-[17px] w-full h-14 bg-[#ffffff80] dark:bg-slate-900 dark:text-white shadow-lg shadow-black/10 backdrop-blur-sm fixed flex justify-between items-center' style={{ 'direction': 'rtl' }}>
 
 
 

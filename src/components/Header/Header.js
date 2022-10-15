@@ -1,7 +1,7 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Menu, Transition } from '@headlessui/react'
-import { UserCircleIcon, BookmarkSquareIcon, CogIcon, ArrowLeftOnRectangleIcon,PlusIcon } from '@heroicons/react/24/solid'
+import { UserCircleIcon, BookmarkSquareIcon, CogIcon, ArrowLeftOnRectangleIcon, PlusIcon } from '@heroicons/react/24/solid'
 import { CpuChipIcon } from '@heroicons/react/24/outline'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../firebase'
@@ -9,7 +9,7 @@ import { auth } from '../../firebase'
 const Header = () => {
   const user = useSelector(state => state.Auth.User)
   const classNames = (...classes) => classes.filter(Boolean).join(' ')
-const [windowsize, setwindowsize] = useState();
+  const [windowsize, setwindowsize] = useState();
 
 
 
@@ -19,19 +19,21 @@ const [windowsize, setwindowsize] = useState();
 
 
 
+useEffect(() => {
+   window.addEventListener('resize', (e) => setwindowsize(window.innerWidth))
+
+}, []);
 
 
 
 
 
-
-window.addEventListener('resize',(e)=>setwindowsize(window.innerWidth))
-
+ 
 
   return (
     <div className='text-xs sm:text-[17px] w-full h-14 bg-[#ffffff80] dark:bg-slate-900 dark:text-white shadow-lg shadow-black/10 backdrop-blur-sm fixed flex justify-between items-center' style={{ 'direction': 'rtl' }}>
 
-  
+
 
       <div className='flex items-center'>
 
@@ -139,15 +141,15 @@ window.addEventListener('resize',(e)=>setwindowsize(window.innerWidth))
 
 
 
-        <button className={`${windowsize > 640 ?'px-3 py-2 ':'px-2 py-1 '} ' bn632-hover bn26  flex justify-center items-center'`}>{windowsize > 640 ?'Add New Task +':<PlusIcon className=' w-6' />}</button>
+        <button className={`${windowsize > 640 ? 'px-3 py-2 ' : 'px-2 py-1 '} ' bn632-hover bn26  flex justify-center items-center'`}>{windowsize > 640 ? 'Add New Task +' : <PlusIcon className=' w-6' />}</button>
 
       </div>
 
       <div className='flex items-center mx-3'>
-       {windowsize > 640 ?<span className=' mx-1 font-bold'>
+        {windowsize > 640 ? <span className=' mx-1 font-bold'>
           Task Manger
-        </span>:''}
-        
+        </span> : ''}
+
         <CpuChipIcon className='w-8 inline cursor-pointer' />
       </div>
 

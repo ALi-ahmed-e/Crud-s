@@ -2,7 +2,9 @@
   text-align: center;
 }
 
-
+body{
+  transition: 0.6s;
+}
 .bn632-hover{
 
   font-weight: 500;
@@ -38,5 +40,14 @@
     #538beb,
     #04befe,
     #3f86ed
+  );
+}
+.bn632-hover.bn20 {
+  background-image: linear-gradient(
+    to right,
+    #667eea,
+    #764ba2,
+    #6b8dd6,
+    #8e37d7
   );
 }

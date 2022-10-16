@@ -3,6 +3,7 @@ import { auth, db, Googleprovider } from '../../firebase'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthAction } from '../../store/Slices/AuthSlice';
+import { ThemeAction } from '../../store/Slices/Themeslice';
 import { useNavigate } from 'react-router-dom';
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -10,6 +11,7 @@ const Sign = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.Auth.User)
     const { SignIn } = AuthAction
+    const { Theme } = ThemeAction
     const navigate = useNavigate()
 
 
@@ -37,27 +39,40 @@ const Sign = () => {
 
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
+
+        const data = {
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            uid: user.uid,
+            tasks: [],
+            theme: 'system'
+        }
+        
         if (docSnap.exists()) {
-            localStorage.setItem('user', JSON.stringify(user))
+
+
+
+            localStorage.setItem('user', JSON.stringify(docSnap.data()))
             localStorage.setItem('credential', JSON.stringify(credential))
-            const action = SignIn({ user, credential })
+            const action = SignIn({ user:docSnap.data(), credential })
             dispatch(action)
+            const action2 = Theme(docSnap.data().theme)
+            dispatch(action2)
             navigate('/')
         } else {
-            const data = {
-                displayName: user.displayName,
-                photoURL: user.photoURL,
-                uid: user.uid,
-                tasks: [],
-                theme: 'system'
-            }
+
+
 
 
             await setDoc(doc(db, "users", user.uid), data);
-            localStorage.setItem('user', JSON.stringify(user))
+
+
+            localStorage.setItem('user', JSON.stringify(data))
             localStorage.setItem('credential', JSON.stringify(credential))
-            const action = SignIn({ user, credential })
+            const action = SignIn({ user:data, credential })
             dispatch(action)
+            const action2 = Theme(data.theme)
+            dispatch(action2)
             navigate('/')
         }
 

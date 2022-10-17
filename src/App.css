@@ -51,3 +51,13 @@ body{
     #8e37d7
   );
 }
+.bn632-hover.bn24 {
+  background-image: linear-gradient(
+      to right,
+      #6253e1,
+      #852d91,
+      #4f4dc7,
+      #6007a8
+    );
+
+}

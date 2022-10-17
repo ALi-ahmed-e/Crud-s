@@ -223,6 +223,11 @@ const Settings = () => {
             <button onClick={saveChanges} className='bn632-hover bn20 block mx-auto px-4 py-1'>{btnsave}</button>
 
 
+
+
+            
+
+
             <div className=' h-[0.5px] w-[95%] bg-slate-500/40 mx-auto my-4 '></div>
 
             <h1 className='mb-5'>Apperance</h1>

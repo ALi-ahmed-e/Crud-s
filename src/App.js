@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
+import AddTask from './components/AddTask/AddTask';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Settings from './components/Settings/Settings';
@@ -10,6 +11,7 @@ import Sign from './components/Sign/Sign';
 function App() {
   const user = useSelector(state => state.Auth.User)
   const theme = useSelector(state => state.Theme.theme)
+  const Addcomponent = useSelector(state => state.Add.buttonShow)
   const [AppTheme, setAppTheme] = useState();
 
 
@@ -76,6 +78,7 @@ function App() {
       
         <BrowserRouter>
          {user != '' && <Header />}
+         {Addcomponent != false&& <AddTask />}
         <div className='  pt-14 '>
             <Routes>
 

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
- const initstate = {User:localStorage.getItem('user')?JSON.parse(localStorage.getItem('user')):'',credential:localStorage.getItem('credential')?JSON.parse(localStorage.getItem('credential')):''}
+ const initstate = {User:localStorage.getItem('user')?JSON.parse(localStorage.getItem('user')):''}
 
 const AuthSlice = createSlice({
     name: "Auth",
@@ -11,7 +11,7 @@ const AuthSlice = createSlice({
             
 
             state.User = action.payload.user
-            state.credential = action.payload.credential
+
 
         },
     }

@@ -7,20 +7,13 @@ const AddTaskSlice = createSlice({
     name: "AddTaskButton",
     initialState: initstate,
     reducers: {
-        Show: (state, action) => {
+        Toggle: (state, action) => {
 
 
-            state.buttonShow = true
+            state.buttonShow = !state.buttonShow
            
 
-        },
-        hide: (state, action) => {
-
-
-            state.buttonShow = false
-           
-
-        },
+        }
     }
 })
 

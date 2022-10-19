@@ -9,7 +9,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const Sign = () => {
     const dispatch = useDispatch()
-    const user = useSelector(state => state.Auth.User)
+    
     const { SignIn } = AuthAction
     const { Theme } = ThemeAction
     const navigate = useNavigate()
@@ -45,7 +45,8 @@ const Sign = () => {
             photoURL: user.photoURL,
             uid: user.uid,
             tasks: [],
-            theme: 'system'
+            theme: 'system',
+            cols:['Todo','Done']
         }
         
         if (docSnap.exists()) {

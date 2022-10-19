@@ -14,23 +14,14 @@ const Header = () => {
   const classNames = (...classes) => classes.filter(Boolean).join(' ')
   const [windowsize, setwindowsize] = useState(window.innerWidth);
   const navigate = useNavigate()
-  const {Show} = AddTaskAction
+  const {Toggle} = AddTaskAction
   const dispatch = useDispatch()
 
 
 
 
-
-
-
-
-
-
-
-
-
   return (
-    <div className='text-sm sm:text-[17px] w-full h-14 bg-[#ffffff80] dark:bg-slate-900 dark:text-white shadow-lg shadow-black/10 backdrop-blur-sm fixed flex justify-between items-center' style={{ 'direction': 'rtl' }}>
+    <div className='text-sm z-40 sm:text-[17px] w-full h-14 bg-[#ffffff80] dark:bg-slate-900 dark:text-white shadow-lg shadow-black/10 backdrop-blur-sm fixed flex justify-between items-center' style={{ 'direction': 'rtl' }}>
 
 
 
@@ -139,7 +130,7 @@ const Header = () => {
 
 
 
-          <button onClick={()=>{dispatch(Show())}} className={`${windowsize > 640 ? 'px-3 py-2 ' : 'px-2 py-1 '} ' bn632-hover bn26  flex justify-center items-center'`}>{windowsize > 640 ? 'Add New Task +' : <PlusIcon className=' w-6' />}</button>
+          <button onClick={()=>{dispatch(Toggle())}} className={`${windowsize > 640 ? 'px-3 py-2 ' : 'px-2 py-1 '} ' bn632-hover bn26  flex justify-center items-center'`}>{windowsize > 640 ? 'Add New Task +' : <PlusIcon className=' w-6' />}</button>
 
         </div>
 

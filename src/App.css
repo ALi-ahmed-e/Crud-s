@@ -2,16 +2,20 @@
   text-align: center;
 }
 
-body{
+body {
   transition: 0.6s;
 }
-.bn632-hover{
+*{
+ outline: none; 
+}
+
+.bn632-hover {
 
   font-weight: 500;
   color: #fff;
   cursor: pointer;
   margin: 10px;
-  text-align:center;
+  text-align: center;
   border: none;
   background-size: 300% 100%;
   border-radius: 10px;
@@ -34,30 +38,37 @@ body{
 }
 
 .bn632-hover.bn26 {
-  background-image: linear-gradient(
-    to right,
-    #25aae1,
-    #538beb,
-    #04befe,
-    #3f86ed
-  );
+  background-image: linear-gradient(to right,
+      #25aae1,
+      #538beb,
+      #04befe,
+      #3f86ed);
 }
+
 .bn632-hover.bn20 {
-  background-image: linear-gradient(
-    to right,
-    #667eea,
-    #764ba2,
-    #6b8dd6,
-    #8e37d7
-  );
+  background-image: linear-gradient(to right,
+      #667eea,
+      #764ba2,
+      #6b8dd6,
+      #8e37d7);
 }
+
 .bn632-hover.bn24 {
-  background-image: linear-gradient(
-      to right,
+  background-image: linear-gradient(to right,
       #6253e1,
       #852d91,
       #4f4dc7,
-      #6007a8
-    );
+      #6007a8);
 
+}
+
+.ameda {
+  width: 350px;
+  
+}
+
+@media (max-width:450px) {
+  .ameda {
+    width: 96% !important;
+  }
 }

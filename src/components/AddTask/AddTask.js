@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AddTaskAction } from '../../store/Slices/AddTaskSlice'
 import { arrayUnion, doc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
@@ -9,6 +9,7 @@ import useRefreshUser from '../RefreshUser/RefreshUser';
 const AddTask = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.Auth.User)
+    const updatemode = useSelector(state => state.Add.update)
     const { Toggle } = AddTaskAction
     const status = useRef()
     const description = useRef()
@@ -24,7 +25,15 @@ const AddTask = () => {
 
     }
 
+    useEffect(() => {
+        if (updatemode) {
+            title.current.value = updatemode.TaskTitle
+            description.current.value = updatemode.TaskDescription
+            status.current.value = updatemode.TaskStatus
+            setbtntext('Save')
+        }
 
+    }, [updatemode]);
 
 
     const AddTask = async () => {
@@ -36,30 +45,40 @@ const AddTask = () => {
             <span className="sr-only">Loading...</span>
         </div></>)
 
-        const All = '8%b523%76GSsmgfgifro'
-        const TaskId = []
-        for (let i = 0; i < All.length; i++) {
-            TaskId.push(All[Math.floor(Math.random() * All.length)])
+        if (updatemode) {
+            const washingtonRef = doc(db, "Tasks", updatemode.TaskId);
+            await updateDoc(washingtonRef, {
+                TaskTitle: title.current.value,
+                TaskDescription: description.current.value,
+                TaskStatus: status.current.value,
+            });
+            setbtntext('Saving changes') 
+        } else {
+            const All = '8%b523%76GSsmgfgifro'
+            const TaskId = []
+            for (let i = 0; i < All.length; i++) {
+                TaskId.push(All[Math.floor(Math.random() * All.length)])
 
-        }
+            }
 
 
-        const data = {
-            TaskTitle: title.current.value,
-            TaskDescription: description.current.value,
-            TaskStatus: status.current.value,
-            timeStamp: serverTimestamp(),
-            Date: Date(),
-            TaskId: TaskId.join(''),
-        }
+            const data = {
+                TaskTitle: title.current.value,
+                TaskDescription: description.current.value,
+                TaskStatus: status.current.value,
+                timeStamp: serverTimestamp(),
+                Date: Date(),
+                TaskId: TaskId.join(''),
+            }
 
-        await setDoc(doc(db, "Tasks", TaskId.join('')), data);
-        const washingtonRef = doc(db, "users", user.uid);
-        await updateDoc(washingtonRef, {
-            tasks: arrayUnion(TaskId.join(''))
-        });
-
-        setbtntext('Create Task')
+            await setDoc(doc(db, "Tasks", TaskId.join('')), data);
+            const washingtonRef = doc(db, "users", user.uid);
+            await updateDoc(washingtonRef, {
+                tasks: arrayUnion(TaskId.join(''))
+            });
+       setbtntext('Create Task') 
+    }
+        
         refreshUser()
         dispatch(Toggle())
     }

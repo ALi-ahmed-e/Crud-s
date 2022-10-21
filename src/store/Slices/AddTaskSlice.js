@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
-const initstate = { buttonShow:false}
+const initstate = { buttonShow: false, update: false }
 
 const AddTaskSlice = createSlice({
     name: "AddTaskButton",
@@ -11,7 +11,13 @@ const AddTaskSlice = createSlice({
 
 
             state.buttonShow = !state.buttonShow
-           
+            state.update = false
+
+
+        },
+        UpdateTask: (state, action) => {
+            state.update = action.payload
+            state.buttonShow = true
 
         }
     }

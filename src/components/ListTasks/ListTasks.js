@@ -1,12 +1,13 @@
 import React, { useLayoutEffect, useState, Fragment, useEffect } from 'react'
 import { arrayRemove, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from '../../firebase';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { EllipsisHorizontalIcon, PencilIcon } from '@heroicons/react/24/solid';
 import { Menu, Transition } from '@headlessui/react';
 import { EyeIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import useRefreshUser from '../RefreshUser/RefreshUser';
+import { AddTaskAction } from '../../store/Slices/AddTaskSlice';
 
 
 
@@ -17,8 +18,8 @@ const ListTasks = () => {
     const [Tasks, setTasks] = useState([]);
     const [refreshUser] = useRefreshUser()
     const [skillton, setskillton] = useState(true)
-
-
+    const { UpdateTask } = AddTaskAction
+    const dispatch = useDispatch()
 
 
 
@@ -73,6 +74,17 @@ const ListTasks = () => {
         setskillton(false)
         getTasks()
 
+    }
+
+
+    const Showmore = (task)=>{
+        console.log(task)
+    }
+
+
+
+    const editTask = (task)=>{
+        dispatch(UpdateTask(task))
     }
 
     return (
@@ -153,6 +165,7 @@ const ListTasks = () => {
                                             <Menu.Item>
                                                 {({ active }) => (
                                                     <button
+                                                    onClick={()=>editTask(task)}
                                                         className={`${active ? 'bg-black/20 ' : 'text-gray-900'} group flex w-full items-center rounded-md px-2 py-2 text-sm dark:text-white`}
                                                     >
                                                         <PencilIcon className=' w-5 mr-2' />Edit
@@ -188,7 +201,7 @@ const ListTasks = () => {
                     </p>
 
                     <div className='w-full flex justify-between'>
-                        <button className="inline-flex items-center self-end py-2 px-3  text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button onClick={()=>{Showmore(task)}} className="inline-flex items-center self-end py-2 px-3  text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Show
                             <EyeIcon className='w-5 -mr-1 ml-1 ' />
                         </button>

@@ -1,6 +1,6 @@
 
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {useSelector } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import AddTask from './components/AddTask/AddTask';
@@ -15,6 +15,7 @@ function App() {
   const theme = useSelector(state => state.Theme.theme)
   const Addcomponent = useSelector(state => state.Add.buttonShow)
   const [AppTheme, setAppTheme] = useState();
+
   useEffect(() => {
 
     switch (theme) {

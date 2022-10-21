@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Menu, Transition } from '@headlessui/react'
-import { UserCircleIcon, BookmarkSquareIcon, CogIcon, ArrowLeftOnRectangleIcon, PlusIcon } from '@heroicons/react/24/solid'
+import {CogIcon, ArrowLeftOnRectangleIcon, PlusIcon } from '@heroicons/react/24/solid'
 import { CpuChipIcon } from '@heroicons/react/24/outline'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../firebase'
@@ -54,37 +54,7 @@ const Header = () => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95">
               <Menu.Items className="absolute right-3 z-10 mt-3 w-44 origin-top-right divide-y divide-gray-100 rounded-md dark:divide-black dark:bg-slate-800 bg-white shadow-lg ring-1 ring-black ring-opacity-5 border-[0.5px] dark:border-black focus:outline-none">
-                <div className="py-1">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <p
-
-
-                        className={classNames(
-                          active ? 'bg-gray-100 dark:bg-gray-900 dark:text-slate-100 text-gray-900  cursor-pointer flex justify-between' : 'text-gray-700 dark:text-slate-100 cursor-pointer flex justify-between',
-                          'block px-4 py-2 text-sm  cursor-pointer'
-                        )}
-
-                      >
-                        <UserCircleIcon className=' w-5 inline' />  Profile
-                      </p>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <p
-
-
-                        className={classNames(
-                          active ? 'bg-gray-100 dark:bg-gray-900 dark:text-slate-100 text-gray-900  cursor-pointer flex justify-between' : 'text-gray-700 dark:text-slate-100 cursor-pointer flex justify-between', 'block px-4 py-2 text-sm  cursor-pointer'
-                        )}
-                      >
-                        <BookmarkSquareIcon className=' w-5 inline' />    favourites
-                      </p>
-                    )}
-                  </Menu.Item>
-
-                </div>
+                
                 <div className="py-1">
                   <Menu.Item>
                     {({ active }) => (

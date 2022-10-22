@@ -64,16 +64,17 @@ const ListTasks = () => {
     }
 
     const togglestatus = async (task) => {
-        const washingtonRef = doc(db, "Tasks", task.TaskId);
+        console.log(task)
+        const taskref = doc(db, "Tasks", task.TaskId);
 
         if (task.TaskStatus == 'Todo') {
-            await updateDoc(washingtonRef, {
+            await updateDoc(taskref, {
                 TaskStatus: 'Done'
             })
 
 
         } else {
-            await updateDoc(washingtonRef, {
+            await updateDoc(taskref, {
                 TaskStatus: 'Todo'
             })
 

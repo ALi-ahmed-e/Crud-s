@@ -20,7 +20,7 @@ const ListTasks = () => {
     const [refreshUser] = useRefreshUser()
     const [skillton, setskillton] = useState(true)
     const { UpdateTask } = AddTaskAction
-    const {ShowMore} = ThemeAction
+    const { ShowMore } = ThemeAction
     const dispatch = useDispatch()
     const [no, setno] = useState('');
 
@@ -106,28 +106,12 @@ const ListTasks = () => {
                     <div className="  p-6 w-full   flex flex-col justify-around m-2  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 ">
                         <div className=' flex justify-between'>
 
-                            <span className=' -mt-3' onClick={() => { togglestatus(task) }}>
-                                <label
-                                    htmlFor="checked-toggle"
-                                    className="inline-flex relative items-center cursor-pointer"
-                                >
-                                    {task.TaskStatus == 'Done' ? <input
-                                        type="checkbox"
-                                        defaultValue=""
-                                        id="checked-toggle"
-                                        className="sr-only peer"
-                                        defaultChecked
-                                    /> : <input
-                                        type="checkbox"
-                                        defaultValue=""
-                                        id="checked-toggle"
-                                        className="sr-only peer"
-                                    />}
-                                    <div className={` ${task.TaskStatus == 'Done' ? 'after:bg-green-500 ' : 'after:bg-red-600'} w-9 h-4 bg-gray-200 rounded-full  peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px]   after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600`} />
-                                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                        {task.TaskStatus}
-                                    </span>
-                                </label>
+                            <span className=' -mt-3 cursor-pointer flex items-center' onClick={() => { togglestatus(task) }}>
+                              <div className='w-3 h-3  rounded-full' style={{'background':task.TaskStatus == 'Done'?'green':'red'}}></div>
+                                <span className="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                    {task.TaskStatus}
+                                </span>
+
                             </span>
 
 
@@ -197,7 +181,7 @@ const ListTasks = () => {
                         </div>
 
 
-                        <button  onClick={() => { Showmoree(task) }}>
+                        <button onClick={() => { Showmoree(task) }}>
                             <h5 className={`"mb-4 text-2xl font-bold tracking-tight decoration-[4px]  dark:decoration-black text-gray-900 dark:text-white "  ${task.TaskStatus == 'Done' && 'line-through'}`}>
                                 {task.TaskTitle}
                             </h5>

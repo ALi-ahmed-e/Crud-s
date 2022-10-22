@@ -64,7 +64,6 @@ const ListTasks = () => {
     }
 
     const togglestatus = async (task) => {
-        console.log(task)
         const taskref = doc(db, "Tasks", task.TaskId);
 
         if (task.TaskStatus == 'Todo') {

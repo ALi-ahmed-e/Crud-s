@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
-const initstate = { theme: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).theme : '' }
+const initstate = { theme: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).theme : '', showmore: false }
 
 const ThemeSlice = createSlice({
     name: "Theme",
@@ -11,9 +11,12 @@ const ThemeSlice = createSlice({
 
 
             state.theme = action.payload
-           
+
 
         },
+        ShowMore: (state, action) => {
+            state.showmore = action.payload
+        }
     }
 })
 

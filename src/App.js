@@ -8,11 +8,13 @@ import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import useRefreshUser from './components/RefreshUser/RefreshUser';
 import Settings from './components/Settings/Settings';
+import ShowMore from './components/Showmore/ShowMore';
 import Sign from './components/Sign/Sign';
 
 function App() {
   const user = useSelector(state => state.Auth.User)
   const theme = useSelector(state => state.Theme.theme)
+  const showmore = useSelector(state => state.Theme.showmore)
   const Addcomponent = useSelector(state => state.Add.buttonShow)
   const [AppTheme, setAppTheme] = useState();
 
@@ -85,6 +87,7 @@ const [refreshUser] = useRefreshUser()
       <BrowserRouter>
         {user != '' && <Header />}
         {Addcomponent != false && <AddTask />}
+        {showmore != false && <ShowMore />}
         <div className='  pt-14 '>
           <Routes>
 
